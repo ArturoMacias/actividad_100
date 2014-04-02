@@ -18,7 +18,7 @@ public class BallDemo
     /**
      * Create a BallDemo object. Creates a fresh canvas and makes it visible.
      */
-    public BallDemo(int numberOfBalls)
+    public BallDemo()
     {
         myCanvas = new Canvas("Ball Demo", 600, 500);
         rnd = new Random();
@@ -26,7 +26,7 @@ public class BallDemo
 
     /**
      * Simulate n bouncing balls
-     * 
+     * EJERCICIO
      * Se pide que modifiques el método bounce de la clase BallDemo para que 
      * el usuario introduzca por parámetro cuántas bolas quiere que aparezcan 
      * en pantalla. El radio y color de las bolas debe ser aleatorio. 
@@ -48,8 +48,16 @@ public class BallDemo
         for (int i=0;i<myBalls.length;i++){
             int x =rnd.nextInt(301);
             int y =rnd.nextInt(251);
-            int diameter = rnd.nextInt(150);
-            myBalls[i] = new BouncingBall(x,y,diameter,Color.BLUE,ground,myCanvas);
+            int diameter = rnd.nextInt(50);
+            //estas tres variables almacenan los tres componentes del color
+            int red = rnd.nextInt(256);
+            int green = rnd.nextInt(256);
+            int blue = rnd.nextInt(256);
+            //nuevo objeto de la clase color, que recibe en el constructor un valor para 
+            //cada color primario
+            Color color = new Color(red,green,blue);
+            //añade bola con las características requeridas
+            myBalls[i] = new BouncingBall(x,y,diameter,color,ground,myCanvas);
             myBalls[i].draw();
         }
        
@@ -57,6 +65,7 @@ public class BallDemo
         boolean finished =  false;
         while(!finished) {
             myCanvas.wait(50);           // small delay
+            //cuando llega la primera se para
             for (int i=0;i<myBalls.length;i++){
                 myBalls[i].move();
                 if (myBalls[i].getXPosition()>=550){
