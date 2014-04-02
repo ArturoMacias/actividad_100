@@ -13,7 +13,6 @@ public class BallDemo
 {
     private Canvas myCanvas;
     private BouncingBall[] myBalls;
-    private int numberOfBalls;
     private Random rnd;
 
     /**
@@ -22,44 +21,49 @@ public class BallDemo
     public BallDemo(int numberOfBalls)
     {
         myCanvas = new Canvas("Ball Demo", 600, 500);
-        this.numberOfBalls = numberOfBalls;
-        myBalls = new BouncingBall[numberOfBalls];
         rnd = new Random();
     }
 
     /**
      * Simulate n bouncing balls
+     * 
+     * Se pide que modifiques el método bounce de la clase BallDemo para que 
+     * el usuario introduzca por parámetro cuántas bolas quiere que aparezcan 
+     * en pantalla. El radio y color de las bolas debe ser aleatorio. 
+     * Su posicion de inicio también debe ser aleatoria, pero siempre 
+     * de la mitad de la pantalla hacia la izquierda. La animación debe 
+     * terminar cuando alguna bola se salga del suelo por la derecha. Por cada
+     * avance que hagas hasta conseguir obtener la solución final, realiza un commit.
      */
-    public void bounce()
+    public void bounce(int numberOfBalls)
     {
         int ground = 400;   // position of the ground line
-
+        myBalls = new BouncingBall[numberOfBalls];
         myCanvas.setVisible(true);
 
         // draw the ground
         myCanvas.drawLine(50, ground, 550, ground);
-
-        // crate and show the balls
-        for (i=0;i<myBalls.length;i++){
-            
-            myBalls[i] = new BouncingBall()
         
+        // crate and show the balls
+        for (int i=0;i<myBalls.length;i++){
+            int x =rnd.nextInt(301);
+            int y =rnd.nextInt(251);
+            int diameter = rnd.nextInt(150);
+            myBalls[i] = new BouncingBall(x,y,diameter,Color.BLUE,ground,myCanvas);
+            myBalls[i].draw();
         }
-        BouncingBall ball = new BouncingBall(50, 50, 16, Color.BLUE, ground, myCanvas);
-        ball.draw();
-        BouncingBall ball2 = new BouncingBall(70, 80, 20, Color.RED, ground, myCanvas);
-        ball2.draw();
-
+       
         // make them bounce
         boolean finished =  false;
         while(!finished) {
             myCanvas.wait(50);           // small delay
-            ball.move();
-            ball2.move();
-            // stop once ball has travelled a certain distance on x axis
-            if(ball.getXPosition() >= 550 || ball2.getXPosition() >= 550) {
+            for (int i=0;i<myBalls.length;i++){
+                myBalls[i].move();
+                if (myBalls[i].getXPosition()>=550){
                 finished = true;
+                }
             }
+            
         }
     }
 }
