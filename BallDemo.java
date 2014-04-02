@@ -11,13 +11,17 @@ import java.awt.Color;
 public class BallDemo   
 {
     private Canvas myCanvas;
+    private BouncingBall[] myBalls;
+    private int numberOfBalls;
 
     /**
      * Create a BallDemo object. Creates a fresh canvas and makes it visible.
      */
-    public BallDemo()
+    public BallDemo(int numberOfBalls)
     {
         myCanvas = new Canvas("Ball Demo", 600, 500);
+        this.numberOfBalls = numberOfBalls;
+        myBalls = new BouncingBall[numberOfBalls];
     }
 
     /**
