@@ -87,7 +87,9 @@ public class BoxBall
         yPosition += ySpeed;
         xPosition += xSpeed;
         
-        // check if it has hit the square
+        // cuando toca alguno de los lados del cuadrado cambia la dirección de la bola.
+        //tiene en cuenta que el circulo tiene x,y en la esquina superior izquierda de un cuadrado en el
+        //que está inscrito
         if(yPosition == (downPosition - diameter) || yPosition == (upPosition)){
             ySpeed = -ySpeed;
         }

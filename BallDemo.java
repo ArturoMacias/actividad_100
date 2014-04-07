@@ -95,6 +95,7 @@ public class BallDemo
         
         // create and show the balls
         for (int i=0;i<myBoxBalls.length;i++){
+            //Para que cree de forma aleatoria el círculo dentro del cuadrado, de ahi el +50
             int x = rnd.nextInt(300)+50;
             int y = rnd.nextInt(300)+50;
             int diameter = rnd.nextInt(50);
@@ -114,7 +115,7 @@ public class BallDemo
         boolean finished =  false;
         while(!finished) {
             myCanvas.wait(10);// small delay
-            //cuando llega la primera se para
+            
             for (int i=0;i<myBoxBalls.length;i++){
                 myBoxBalls[i].move();
             }
