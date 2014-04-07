@@ -29,8 +29,8 @@ public class BoxBall
     private final int downPosition;
     private final int rightPosition;
     private Canvas canvas;
-    private int ySpeed;                // initial downward speed
     private int xSpeed;
+    private int ySpeed; 
     /**
      * Constructor for objects of class BoxBall
      *
@@ -42,7 +42,8 @@ public class BoxBall
      * @param drawingCanvas  the canvas to draw this ball on
      */
     public BoxBall(int xPos, int yPos, int ballDiameter, Color ballColor,
-                        int upPosition,int rightPosition ,int downPosition,int leftPosition, Canvas drawingCanvas)
+                        int upPosition,int rightPosition ,int downPosition,int leftPosition, Canvas drawingCanvas,
+                        int xSpeed,int ySpeed)
     {
         xPosition = xPos;
         yPosition = yPos;
@@ -53,8 +54,8 @@ public class BoxBall
         this.leftPosition=leftPosition;
         this.downPosition=downPosition;
         canvas = drawingCanvas;
-        ySpeed=1;
-        xSpeed=1;
+        this.xSpeed = xSpeed;
+        this.ySpeed = ySpeed;
     }
 
     /**

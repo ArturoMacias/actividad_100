@@ -106,8 +106,18 @@ public class BallDemo
             //nuevo objeto de la clase color, que recibe en el constructor un valor para 
             //cada color primario
             Color color = new Color(red,green,blue);
+            boolean xBool =rnd.nextBoolean();
+            boolean yBool =rnd.nextBoolean();
+            int xSpeed= -1;
+            int ySpeed=-1;
+            if (xBool){
+                xSpeed = 1;
+            }
+            if (yBool){
+                ySpeed = 1;
+            }
             //añade boxBall con las características requeridas
-            myBoxBalls[i] = new BoxBall(x,y,diameter,color,Y1,X2,Y2,X1,myCanvas);
+            myBoxBalls[i] = new BoxBall(x,y,diameter,color,Y1,X2,Y2,X1,myCanvas,xSpeed,ySpeed);
             myBoxBalls[i].draw();
         }
        
