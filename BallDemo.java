@@ -13,7 +13,13 @@ public class BallDemo
 {
     private Canvas myCanvas;
     private BouncingBall[] myBalls;
+    private BoxBall[] myBoxBalls;
     private Random rnd;
+    public final static int X1 =50;
+    public final static int Y1 =50;
+    public final static int X2 =400;
+    public final static int Y2 =400;
+    
 
     /**
      * Create a BallDemo object. Creates a fresh canvas and makes it visible.
@@ -43,7 +49,6 @@ public class BallDemo
 
         // draw the ground
         myCanvas.drawLine(50, ground, 550, ground);
-        
         // crate and show the balls
         for (int i=0;i<myBalls.length;i++){
             int x =rnd.nextInt(301);
@@ -64,13 +69,54 @@ public class BallDemo
         // make them bounce
         boolean finished =  false;
         while(!finished) {
-            myCanvas.wait(50);           // small delay
+            myCanvas.wait(50); // small delay
             //cuando llega la primera se para
             for (int i=0;i<myBalls.length;i++){
                 myBalls[i].move();
                 if (myBalls[i].getXPosition()>=550){
                 finished = true;
                 }
+            }
+            
+        }
+    }
+    
+    public void boxBounce(int numberOfBalls)
+    {
+        myBoxBalls = new BoxBall[numberOfBalls];
+        myCanvas.setVisible(true);
+
+        // draw the square
+       myCanvas.drawLine(X1, Y1, X2, Y1);
+       myCanvas.drawLine(X2, Y1, X2, Y2);
+       myCanvas.drawLine(X2, Y2, X1, Y2);
+       myCanvas.drawLine(X1, Y2, X1, Y1);
+       
+        
+        // create and show the balls
+        for (int i=0;i<myBoxBalls.length;i++){
+            int x = rnd.nextInt(300)+50;
+            int y = rnd.nextInt(300)+50;
+            int diameter = rnd.nextInt(50);
+            //estas tres variables almacenan los tres componentes del color
+            int red = rnd.nextInt(256);
+            int green = rnd.nextInt(256);
+            int blue = rnd.nextInt(256);
+            //nuevo objeto de la clase color, que recibe en el constructor un valor para 
+            //cada color primario
+            Color color = new Color(red,green,blue);
+            //añade boxBall con las características requeridas
+            myBoxBalls[i] = new BoxBall(x,y,diameter,color,Y1,X2,Y2,X1,myCanvas);
+            myBoxBalls[i].draw();
+        }
+       
+        // make them bounce
+        boolean finished =  false;
+        while(!finished) {
+            myCanvas.wait(10);// small delay
+            //cuando llega la primera se para
+            for (int i=0;i<myBoxBalls.length;i++){
+                myBoxBalls[i].move();
             }
             
         }
